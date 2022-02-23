@@ -1,4 +1,6 @@
 package com.gradle.calculo;
 
-public class Calculo {
+public class Controlador {
+
+  
 }
