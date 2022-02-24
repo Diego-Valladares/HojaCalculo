@@ -46,7 +46,7 @@ public class Controlador {
 
         }
       } else if (comando.equals(">=PROMEDIO")) {
-        
+
       } else if (comando.equals(">=MULT")) {
         posicion2 = posiciones.charAt(1);
         if (String.valueOf(posicion2).equals("1")
