@@ -1,5 +1,5 @@
 package com.gradle.calculo;
-import java.util.Scanner;
+import java.util.*;
 
 public class Controlador {
 
@@ -102,8 +102,8 @@ public class Controlador {
 
           for (int i = row1; i <= row2; i++){
             for (int k = col1; k <= col2; k++){
-              num1 = datos[row1][col1].split("/")[0];
-              den1 = datos[row1][col1].split("/")[1];
+              num1 = datos[i][k].split("/")[0];
+              den1 = datos[i][k].split("/")[1];
               Fraccion f1 = new Fraccion(num1, den1);
               f2 = f2.sumar(f1);
             }
@@ -141,8 +141,8 @@ public class Controlador {
 
           for (int i = row1; i <= row2; i++){
             for (int k = col1; k <= col2; k++){
-              num1 = datos[row1][col1].split("/")[0];
-              den1 = datos[row1][col1].split("/")[1];
+              num1 = datos[i][k].split("/")[0];
+              den1 = datos[i][k].split("/")[1];
               Fraccion f1 = new Fraccion(num1, den1);
               f2 = f2.multiplicar(f1);
             }
@@ -157,6 +157,56 @@ public class Controlador {
       }
 
       else if (comando.equals(">=MIN")) {
+        primerLetra = posiciones.charAt(1);
+        row1 = Character.getNumericValue(primerLetra);
+        primerLetra = posiciones.charAt(0);
+        col1 = primerLetra;
+        col1 = col1 - 65;
+
+        primerLetra = posiciones.charAt(3);
+        row2 = Character.getNumericValue(primerLetra);
+        primerLetra = posiciones.charAt(4);
+        col2 = primerLetra;
+        col2 = col2 - 65;
+
+        double numerador;
+        double denominador;
+        String minimo;
+        double total;
+        int contador = 0;
+        double[] menores = new double[row2 * col2];
+        String[] cords = new String[row2 * col2];
+        for (int i = row1; i <= row2; i++){
+          for (int k = col1; k <= col2; k++){
+            minimo = datos[i][k].split("/")[0];
+            numerador = Double.parseDouble(minimo);
+            minimo = datos[i][k].split("/")[1];
+            denominador = Double.parseDouble(minimo);
+            total = numerador / denominador;
+            menores[contador] = total;
+            cords[contador] = i +" "+ k;
+            contador++;
+          }
+        }
+        double min = 0;
+        double num = 0;
+        int coordenada = 0;
+        for (int index = 0; index < (row2 * col2); index++) {
+          num = menores[index];
+          if (index == 0) {
+            min = num;
+          }
+
+          if (num < min) {
+            min = num;
+            coordenada = index;
+          }
+        }
+
+        char fila = cords[coordenada].charAt(0);
+        char columna = cords[coordenada].charAt(2);
+
+        datos[celdaRow][celdaCol] = datos[fila][columna];
 
       }
 
