@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Controlador {
 
-  private Scanner input = new Scanner(System.in);
+  private final Scanner input = new Scanner(System.in);
 
   public static void main(final String[] args) {
 
@@ -45,16 +45,16 @@ public class Controlador {
 
       String posiciones = this.input.next();
 
-      char primerLetra = ' ';
-      char segundLetra = ' ';
-      String num1 = " ";
-      String num2 = " ";
-      String den1 = " ";
-      String den2 = " ";
-      int row1 = 0;
-      int row2 = 0;
-      int col1 = 0;
-      int col2 = 0;
+      char primerLetra;
+      char segundLetra;
+      String num1;
+      String num2;
+      String den1;
+      String den2;
+      int row1;
+      int row2;
+      int col1;
+      int col2;
 
 
       if (comando.equals(">=CEL")) { // Para conseguir la celda que se va a reemplazar
@@ -69,6 +69,8 @@ public class Controlador {
         //Llamar a metodo de impresion
       }
 
+      String nombres = comando.split(",")[0];
+
       if (comando.equals(">=CONJUNTO")) {
         int temp = comando.split(",").length;
         String[] arregloConjuntos = new String[temp];
@@ -78,7 +80,7 @@ public class Controlador {
       }
 
       if (comando.equals(">=SUMA")){
-        if (posiciones.contains("conj")){
+        if (posiciones.contains(nombres)){
 
         }
         else {
@@ -92,7 +94,7 @@ public class Controlador {
           row2 = Character.getNumericValue(primerLetra);
           primerLetra = posiciones.charAt(4);
           col2 = primerLetra;
-          col2 = col1 - 65;
+          col2 = col2 - 65;
 
           num2 = "0";
           den2 = "0";
@@ -113,11 +115,11 @@ public class Controlador {
       }
 
       else if (comando.equals(">=PROMEDIO")) {
-
+      
       }
 
       else if (comando.equals(">=MULT")) {
-        if (posiciones.contains("conj")){
+        if (posiciones.contains(nombres)){
 
         }
         else {
@@ -131,7 +133,7 @@ public class Controlador {
           row2 = Character.getNumericValue(primerLetra);
           primerLetra = posiciones.charAt(4);
           col2 = primerLetra;
-          col2 = col1 - 65;
+          col2 = col2 - 65;
 
           num2 = "1";
           den2 = "1";
