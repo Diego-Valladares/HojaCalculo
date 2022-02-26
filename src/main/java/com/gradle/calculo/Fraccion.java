@@ -1,6 +1,7 @@
 package com.gradle.calculo;
 
 import java.math.BigDecimal;
+import java.awt.*;
 
 public class Fraccion {
 
@@ -12,4 +13,82 @@ public class Fraccion {
     this.numerador = new BigDecimal("0");
     this.denominador = new BigDecimal("1");
   }
+
+  public Fraccion(final String pNumerador) {
+    this.numerador = new BigDecimal(pNumerador);
+    this.denominador = new BigDecimal("1");
+  }
+
+  public Fraccion(final String pNumerador, final String pDenominador) {
+    if (pDenominador.charAt(0) == '-') {
+      this.numerador = new BigDecimal(pNumerador).multiply(new BigDecimal(-1));
+      this.denominador = new BigDecimal(pDenominador).abs();
+    } else {
+      this.numerador = new BigDecimal(pNumerador);
+      this.denominador = new BigDecimal(pDenominador);
+    }
+    simplificar();
+  }
+
+  public Fraccion(final BigDecimal pNumerador, final BigDecimal pDenominador) {
+    if (pDenominador.compareTo(BigDecimal.ZERO) < 0) {
+      this.numerador = pNumerador.multiply(new BigDecimal(-1));
+      this.denominador = pDenominador.abs();
+    } else {
+      this.numerador = new BigDecimal(pNumerador.toString());
+      this.denominador = new BigDecimal(pDenominador.toString());
+    }
+    simplificar();
+  }
+
+  public BigDecimal getNumerador() {
+    return this.numerador;
+  }
+
+  public BigDecimal getDenominador() {
+    return this.denominador;
+  }
+
+  public String toString() {
+    return  numerador.toString() + "/" + denominador.toString();
+  }
+
+  private BigDecimal maximoComunDivisor(final BigDecimal pNumerador,
+                                        final BigDecimal pDenominador) {
+    BigDecimal a = new BigDecimal(pNumerador.toString());
+    BigDecimal b = new BigDecimal(pDenominador.toString());
+    while (!b.equals(BigDecimal.ZERO)) {
+      BigDecimal t = new BigDecimal(b.toString());
+      b = a.remainder(b);
+      a = new BigDecimal(t.toString());
+    }
+    return a;
+  }
+
+  private void simplificar() {
+    BigDecimal mcd = maximoComunDivisor(this.numerador.abs(),
+        this.denominador.abs());
+    this.numerador = this.numerador.divide(mcd);
+    this.denominador = this.denominador.divide(mcd);
+  }
+
+  public Fraccion sumar(final Fraccion fraction) {
+    BigDecimal num1 = this.numerador.multiply(fraction.getDenominador());
+    BigDecimal num2 = fraction.numerador.multiply(this.denominador);
+    BigDecimal nuevoNumerador = num1.add(num2);
+    BigDecimal nuevoDenominador = this.denominador.multiply(
+        fraction.getDenominador());
+    return new Fraccion(nuevoNumerador, nuevoDenominador);
+  }
+
+  public Fraccion multiplicar(final Fraccion fraction) {
+    BigDecimal nuevoNumerador = this.numerador.multiply(
+        fraction.getNumerador());
+    BigDecimal nuevoDenominador = this.denominador.multiply(
+        fraction.getDenominador());
+    return new Fraccion(nuevoNumerador, nuevoDenominador);
+  }
+
+
+
 }

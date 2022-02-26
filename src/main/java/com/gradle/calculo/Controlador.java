@@ -13,6 +13,10 @@ public class Controlador {
 
   }
 
+
+  static int celdaRow = 0;
+  static int celdaCol = 0;
+
   public void run() {
 
     int rows = input.nextInt();
@@ -25,52 +29,76 @@ public class Controlador {
         datos[i][k] = input.next();
       }
     }
+
     char parentesis = '(';
+
     this.input.useDelimiter(String.valueOf(parentesis));
+
     while (this.input.hasNext()) {
       String comando = this.input.next();
+
       String posiciones = this.input.next();
-      char posicion2 = ' ';
-      if (comando.equals(">=CEL")) {
-      } else if (comando.equals(">=SUMA")) {
-        posicion2 = posiciones.charAt(1);
-        if (String.valueOf(posicion2).equals("1")
-            || String.valueOf(posicion2).equals("2")
-            || String.valueOf(posicion2).equals("3")
-            || String.valueOf(posicion2).equals("4")
-            || String.valueOf(posicion2).equals("5")
-            || String.valueOf(posicion2).equals("6")
-            || String.valueOf(posicion2).equals("7")
-            || String.valueOf(posicion2).equals("8")
-            || String.valueOf(posicion2).equals("9")) {
 
-        }
-      } else if (comando.equals(">=PROMEDIO")) {
+      char primerLetra = ' ';
+      char segundLetra = ' ';
+      String num1 = " ";
+      String num2 = " ";
+      String den1 = " ";
+      String den2 = " ";
 
-      } else if (comando.equals(">=MULT")) {
-        posicion2 = posiciones.charAt(1);
-        if (String.valueOf(posicion2).equals("1")
-            || String.valueOf(posicion2).equals("2")
-            || String.valueOf(posicion2).equals("3")
-            || String.valueOf(posicion2).equals("4")
-            || String.valueOf(posicion2).equals("5")
-            || String.valueOf(posicion2).equals("6")
-            || String.valueOf(posicion2).equals("7")
-            || String.valueOf(posicion2).equals("8")
-            || String.valueOf(posicion2).equals("9")) {
-
-        }
-      } else if (comando.equals(">=MEDIANA")) {
-      } else if (comando.equals(">=MIN")) {
-      } else if (comando.equals(">=MAX")) {
-      } else if (comando.equals(">=CONJUNTO")) {
+      if (comando.equals(">=CEL")) { // Para conseguir la celda que se va a reemplazar
+        primerLetra = posiciones.charAt(1);
+        celdaRow = Character.getNumericValue(primerLetra);
+        primerLetra = posiciones.charAt(0);
+        celdaCol = primerLetra;
+        celdaCol = celdaCol - 65;
       }
+
+      if (comando.equals(">=IMPRIMIR")){
+        //Llamar a metodo de impresion
+      }
+
+
+      if (comando.equals(">=SUMA")){
+        if (posiciones.contains("conj")){
+
+        }
+        else {
+        
+        }
+      }
+
+      else if (comando.equals(">=PROMEDIO")) {
+
+      }
+
+      else if (comando.equals(">=MULT")) {
+        if (posiciones.contains("conj")){
+
+        }
+        else {
+
+        }
+      }
+
+      else if (comando.equals(">=MEDIANA")) {
+
+      }
+
+      else if (comando.equals(">=MIN")) {
+
+      }
+
+      else if (comando.equals(">=MAX")) {
+
+      }
+
+
+
+
     }
-    
+
     input.close();
 
   }
-
-
-
 }
