@@ -69,6 +69,13 @@ public class Controlador {
         //Llamar a metodo de impresion
       }
 
+      if (comando.equals(">=CONJUNTO")) {
+        int temp = comando.split(",").length;
+        String[] arregloConjuntos = new String[temp];
+        for (int index = 1; index< temp; index++) {
+          arregloConjuntos[index] = comando.split(",")[index];
+        }
+      }
 
       if (comando.equals(">=SUMA")){
         if (posiciones.contains("conj")){
