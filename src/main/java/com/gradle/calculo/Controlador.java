@@ -212,6 +212,54 @@ public class Controlador {
 
       else if (comando.equals(">=MAX")) {
 
+        primerLetra = posiciones.charAt(1);
+        row1 = Character.getNumericValue(primerLetra);
+        primerLetra = posiciones.charAt(0);
+        col1 = primerLetra;
+        col1 = col1 - 65;
+
+        primerLetra = posiciones.charAt(3);
+        row2 = Character.getNumericValue(primerLetra);
+        primerLetra = posiciones.charAt(4);
+        col2 = primerLetra;
+        col2 = col2 - 65;
+
+        double numerador;
+        double denominador;
+        String maximo;
+        double total;
+        int contador = 0;
+        double[] mayores = new double[row2 * col2];
+        String[] cords = new String[row2 * col2];
+        for (int i = row1; i <= row2; i++){
+          for (int k = col1; k <= col2; k++){
+            maximo = datos[i][k].split("/")[0];
+            numerador = Double.parseDouble(maximo);
+            maximo = datos[i][k].split("/")[1];
+            denominador = Double.parseDouble(maximo);
+            total = numerador / denominador;
+            mayores[contador] = total;
+            cords[contador] = i +" "+ k;
+            contador++;
+          }
+        }
+        double max = 0;
+        double num = 0;
+        int coordenada = 0;
+        for (int index = 0; index < (row2 * col2); index++) {
+          num = mayores[index];
+
+          if (num > max) {
+            max = num;
+            coordenada = index;
+          }
+        }
+
+        char fila = cords[coordenada].charAt(0);
+        char columna = cords[coordenada].charAt(2);
+
+        datos[celdaRow][celdaCol] = datos[fila][columna];
+
       }
 
 
