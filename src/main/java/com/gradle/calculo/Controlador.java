@@ -92,12 +92,25 @@ public class Controlador {
       int col1;
       int col2;
 
+      //If que indica la celda en donde estará el resultado del próximo comando.
+      if (comando.equals(">=CEL")) {
 
-      if (comando.equals(">=CEL")) { // Para conseguir la celda que se va a reemplazar
+        //Se obtiene el número como String de la celda que se va a modificar.
         primerLetra = posiciones.charAt(1);
+
+        //Se establece la celda con el valor de primeraLetra como int.
         celdaRow = Character.getNumericValue(primerLetra);
+
+        //Se obtiene la letra de la celda que se va a modificar.
         primerLetra = posiciones.charAt(0);
+
+        //Se establece la columna de la celda que se va a modificar con lo que
+        //hay en "primeraLetra".
         celdaCol = primerLetra;
+
+        //Se obtiene el valor numérico de la letra y se le restan 65 para que
+        //quede establecido en la columna de la celda de la matriz que se
+        //modifica.
         celdaCol = celdaCol - 65;
       }
 
