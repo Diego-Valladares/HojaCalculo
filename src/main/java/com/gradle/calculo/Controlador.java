@@ -133,10 +133,18 @@ public class Controlador {
         break;
       }
 
+      //If que indica que lo que tiene se ejecuta si el comando es ">=CONJUNTO".
       if (comando.equals(">=CONJUNTO")) {
+
+        //Se eliminan las comas en comando y se cuenta lo que hay.
         int temp = comando.split(",").length;
+
+        //Se crea un arreglo de Strings de tamaño "temp".
         String[] arregloConjuntos = new String[temp];
-        for (int index = 1; index< temp; index++) {
+
+        //Ciclo for que explora arregloConjuntos y elimina las comas del
+        //comando.
+        for (int index = 1; index < temp; index++) {
           arregloConjuntos[index] = comando.split(",")[index];
         }
       }
