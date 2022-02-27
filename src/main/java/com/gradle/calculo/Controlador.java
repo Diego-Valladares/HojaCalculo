@@ -31,12 +31,18 @@ public class Controlador {
   //Variable que contiene la columna en que actualizará la información.
   static int celdaCol = 0;
 
+  /**
+   * Método que ejecuta la lógica del programa.
+   */
   public void run() {
 
+    //Variables que indican la cantidad de filas y columnas de la matriz.
     int rows = input.nextInt();
     int cols = input.nextInt();
     input.nextLine();
 
+    //Creación de la matriz que se llena con lo de la entrada estándar por medio
+    //de 2 ciclos for.
     String[][] datos = new String[rows][cols];
     for (int i = 0; i < rows; i++) {
       for (int k = 0; k < cols; k++) {
@@ -44,27 +50,43 @@ public class Controlador {
       }
     }
 
+    //Dos ciclos for que exploran la matriz y reemplazan el carácter ',' por un
+    //espacio vacío en cada componente de la matriz.
     for (int i = 0; i < rows; i++) {
       for (int k = 0; k < cols; k++) {
         datos[i][k] = datos[i][k].replace(',',' ');
       }
     }
-
+    //Variable que almacena el carácter que se usará en el delimitador.
     char parentesis = '(';
 
+    //Se establece el delimitador con el valor de la variable "parentesis".
     this.input.useDelimiter(String.valueOf(parentesis));
 
+    //Ciclo while que indica que lo que está en su interior se ejecuta mientras
+    //haya una cadena texto.
     while (this.input.hasNext()) {
+
+      //Variable que indicará cual comando se recibirá.
       String comando = this.input.next();
 
+      //Variable que recibe las posiciones que se van a usar en el comando.
       String posiciones = this.input.next();
 
+      //Variables que indicarán la primera y segunda letra de las posiciones
+      //usadas por el comando.
       char primerLetra;
       char segundLetra;
+
+      //Variables que indicarán los numeradores y denominadores de los
+      //contenidos de las posiciones usadas por el comando.
       String num1;
       String num2;
       String den1;
       String den2;
+
+      //Variables que se usarán para explorar la matriz y sus valores y
+      //modificarlos o imprimirlos de acuerdo con el comando indicado.
       int row1;
       int row2;
       int col1;
