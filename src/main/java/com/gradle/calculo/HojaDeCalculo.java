@@ -3,7 +3,7 @@ package com.gradle.calculo;
 public class HojaDeCalculo
 {
 
-  public void imprimir(int rows, int cols, String[][] datos){
+  public void Imprimir(int rows, int cols, String[][] datos){
 
     int size;
     int max = 0;
@@ -40,7 +40,6 @@ public class HojaDeCalculo
       }
       System.out.println();
     }
-
 
   }
 }

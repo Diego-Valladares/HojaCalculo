@@ -79,11 +79,18 @@ public class Controlador {
         celdaCol = celdaCol - 65;
       }
 
-      if (comando.equals(">=IMPRIMIR")){
-        //Llamar a metodo de impresion
-      }
-
       String nombres = comando.split(",")[0];
+
+      if (comando.equals(">=IMPRIMIR")){
+        if (posiciones.contains(nombres)){
+
+        }
+        else {
+          HojaDeCalculo imprimir = new HojaDeCalculo();
+          imprimir.Imprimir(rows,cols,datos);
+        }
+        break;
+      }
 
       if (comando.equals(">=CONJUNTO")) {
         int temp = comando.split(",").length;
