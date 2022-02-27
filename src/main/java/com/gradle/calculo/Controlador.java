@@ -116,14 +116,20 @@ public class Controlador {
 
       String nombres = comando.split(",")[0];
 
+      //If que indica que lo que tiene se ejecuta si el comando es ">=IMPRIMIR".
       if (comando.equals(">=IMPRIMIR")){
         if (posiciones.contains(nombres)){
 
         }
         else {
+
+          //Instancia de HojaDeCálculo que se usará para imprimir la matriz.
           HojaDeCalculo imprimir = new HojaDeCalculo();
+
+          //Invocación del método que se usará para imprimir la matriz.
           imprimir.Imprimir(rows,cols,datos);
         }
+        //Se detiene la ejecución del programa.
         break;
       }
 
