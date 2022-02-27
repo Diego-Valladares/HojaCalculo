@@ -1,20 +1,34 @@
 package com.gradle.calculo;
 import java.util.*;
 
+/**
+ * Clase que maneja el programa; desde ella se llama a los métodos y se hacen
+ * instancias otras clases.
+ */
 public class Controlador {
 
+  /**
+   * Instancia de clase Scanner que recibe los datos de la entrada estándar.
+   */
   private final Scanner input = new Scanner(System.in);
 
+  /**
+   * Método que arranca el programa.
+   *
+   * @param args Argumentos del programa.
+   */
   public static void main(final String[] args) {
 
+    //Creación de una instancia de clase Controlador.
     Controlador controlador = new Controlador();
-
+    //Invocación del método run.
     controlador.run();
 
   }
 
-
+  //Variable que contiene la fila en que actualizará la información.
   static int celdaRow = 0;
+  //Variable que contiene la columna en que actualizará la información.
   static int celdaCol = 0;
 
   public void run() {
