@@ -3,7 +3,9 @@ package com.gradle.calculo;
 public class HojaDeCalculo
 {
 
-  public void Imprimir(int rows, int cols, String[][] datos){
+
+
+  public static void Imprimir(int rows, int cols, String[][] datos){
 
     int size;
     int max = 0;
@@ -42,4 +44,4 @@ public class HojaDeCalculo
     }
 
   }
-}
+} //java -jar HojaCalculo-1.0.jar < ../../tests/input006.txt

@@ -39,7 +39,8 @@ public class Controlador {
     //Variables que indican la cantidad de filas y columnas de la matriz.
     int rows = input.nextInt();
     int cols = input.nextInt();
-    input.nextLine();
+
+    System.out.println(rows +" "+cols);
 
     //Creación de la matriz que se llena con lo de la entrada estándar por medio
     //de 2 ciclos for.
@@ -47,7 +48,9 @@ public class Controlador {
     for (int i = 0; i < rows; i++) {
       for (int k = 0; k < cols; k++) {
         datos[i][k] = input.next();
+        System.out.print(datos[i][k]);
       }
+      System.out.println("");
     }
 
     //Dos ciclos for que exploran la matriz y reemplazan el carácter ',' por un
@@ -57,21 +60,22 @@ public class Controlador {
         datos[i][k] = datos[i][k].replace(',',' ');
       }
     }
-    //Variable que almacena el carácter que se usará en el delimitador.
-    char parentesis = '(';
 
-    //Se establece el delimitador con el valor de la variable "parentesis".
-    this.input.useDelimiter(String.valueOf(parentesis));
+    //Se establece el delimitador que salte en "(".
+    this.input.useDelimiter("[(]");
 
     //Ciclo while que indica que lo que está en su interior se ejecuta mientras
     //haya una cadena texto.
-    while (this.input.hasNext()) {
+
+    while (this.input.hasNextLine()) {
 
       //Variable que indicará cual comando se recibirá.
       String comando = this.input.next();
+      System.out.println(comando);
 
       //Variable que recibe las posiciones que se van a usar en el comando.
       String posiciones = this.input.next();
+      System.out.println(posiciones);
 
       //Variables que indicarán la primera y segunda letra de las posiciones
       //usadas por el comando.
@@ -114,23 +118,18 @@ public class Controlador {
         celdaCol = celdaCol - 65;
       }
 
-      String nombres = comando.split(",")[0];
+      String nombres = posiciones.split(",")[0];
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=IMPRIMIR".
       if (comando.equals(">=IMPRIMIR")){
-        if (posiciones.contains(nombres)){
-
-        }
-        else {
-
           //Instancia de HojaDeCálculo que se usará para imprimir la matriz.
           HojaDeCalculo imprimir = new HojaDeCalculo();
 
           //Invocación del método que se usará para imprimir la matriz.
-          imprimir.Imprimir(rows,cols,datos);
-        }
+          HojaDeCalculo.Imprimir(rows,cols,datos);
+
         //Se detiene la ejecución del programa.
-        break;
+
       }
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=CONJUNTO".
