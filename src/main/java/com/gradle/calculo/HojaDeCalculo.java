@@ -3,7 +3,16 @@ package com.gradle.calculo;
 public class HojaDeCalculo
 {
 
+  int rows;
+  int cols;
+  String [][] datos;
 
+  HojaDeCalculo(int rows, int cols, String[][] datos){
+    this.rows = rows;
+    this.cols = cols;
+    this.datos = datos;
+
+  }
 
   public static void Imprimir(int rows, int cols, String[][] datos){
 
@@ -12,10 +21,10 @@ public class HojaDeCalculo
     for (int i = 0; i < rows; i++){
       for (int k = 0; k < cols; k++){
         size = datos[i][k].length();
-        if (i == 0){
+        if (i == 0 && k == 0){
           max = size;
         }
-        if (max < size){
+        else if (max < size){
           max = size;
         }
       }
@@ -35,9 +44,10 @@ public class HojaDeCalculo
       System.out.printf("%s ", lineaDivisora);
     }
     System.out.println();
+    //max = max +1;
     for (int i = 0; i < rows; i ++){
+      System.out.printf("%"+espacioNum+"d|", i+1);
       for (int k = 0; k < cols; k++){
-        System.out.printf("%"+espacioNum+"d|", i+1);
         System.out.printf("%"+max+"s ", datos[i][k]);
       }
       System.out.println();

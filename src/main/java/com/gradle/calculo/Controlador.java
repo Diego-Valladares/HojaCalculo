@@ -40,7 +40,10 @@ public class Controlador {
     int rows = input.nextInt();
     int cols = input.nextInt();
 
-    System.out.println(rows +" "+cols);
+    //System.out.println(rows +" "+cols);
+
+    input.nextLine();
+    input.nextLine();
 
     //Creación de la matriz que se llena con lo de la entrada estándar por medio
     //de 2 ciclos for.
@@ -48,9 +51,9 @@ public class Controlador {
     for (int i = 0; i < rows; i++) {
       for (int k = 0; k < cols; k++) {
         datos[i][k] = input.next();
-        System.out.print(datos[i][k]);
+        //System.out.print(datos[i][k]);
       }
-      System.out.println("");
+      //System.out.println("");
     }
 
     //Dos ciclos for que exploran la matriz y reemplazan el carácter ',' por un
@@ -58,8 +61,10 @@ public class Controlador {
     for (int i = 0; i < rows; i++) {
       for (int k = 0; k < cols; k++) {
         datos[i][k] = datos[i][k].replace(',',' ');
+        datos[i][k] = datos[i][k].replace(" ","");
       }
     }
+    input.nextLine();
 
     //Se establece el delimitador que salte en "(".
     this.input.useDelimiter("[(]");
@@ -71,11 +76,11 @@ public class Controlador {
 
       //Variable que indicará cual comando se recibirá.
       String comando = this.input.next();
-      System.out.println(comando);
+      //System.out.println(comando);
 
       //Variable que recibe las posiciones que se van a usar en el comando.
       String posiciones = this.input.next();
-      System.out.println(posiciones);
+      //System.out.println(posiciones);
 
       //Variables que indicarán la primera y segunda letra de las posiciones
       //usadas por el comando.
@@ -121,15 +126,12 @@ public class Controlador {
       String nombres = posiciones.split(",")[0];
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=IMPRIMIR".
-      if (comando.equals(">=IMPRIMIR")){
-          //Instancia de HojaDeCálculo que se usará para imprimir la matriz.
-          HojaDeCalculo imprimir = new HojaDeCalculo();
-
+      if (comando.contains(">=IMPRIMIR")){
           //Invocación del método que se usará para imprimir la matriz.
-          HojaDeCalculo.Imprimir(rows,cols,datos);
+          HojaDeCalculo.Imprimir(rows, cols,datos);
 
-        //Se detiene la ejecución del programa.
-
+          //Se detiene la ejecución del programa.
+          break;
       }
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=CONJUNTO".
