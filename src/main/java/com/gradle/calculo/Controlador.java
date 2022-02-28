@@ -67,7 +67,7 @@ public class Controlador {
     input.nextLine();
 
     //Se establece el delimitador que salte en "(".
-    this.input.useDelimiter("[(]");
+    this.input.useDelimiter("[\\n (]");
 
     //Ciclo while que indica que lo que está en su interior se ejecuta mientras
     //haya una cadena texto.
@@ -81,6 +81,7 @@ public class Controlador {
       //Variable que recibe las posiciones que se van a usar en el comando.
       String posiciones = this.input.next();
       //System.out.println(posiciones);
+
 
       //Variables que indicarán la primera y segunda letra de las posiciones
       //usadas por el comando.
