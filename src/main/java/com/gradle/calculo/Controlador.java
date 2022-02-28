@@ -102,7 +102,7 @@ public class Controlador {
       int col2;
 
       //If que indica la celda en donde estará el resultado del próximo comando.
-      if (comando.equals(">=CEL")) {
+      if (comando.contains(">=CEL")) {
 
         //Se obtiene el número como String de la celda que se va a modificar.
         primerLetra = posiciones.charAt(1);
@@ -135,7 +135,7 @@ public class Controlador {
       }
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=CONJUNTO".
-      if (comando.equals(">=CONJUNTO")) {
+      if (comando.contains(">=CONJUNTO")) {
 
         //Se eliminan las comas en comando y se cuenta lo que hay.
         int temp = comando.split(",").length;
@@ -151,7 +151,7 @@ public class Controlador {
       }
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=SUMA".
-      if (comando.equals(">=SUMA")){
+      if (comando.contains(">=SUMA")){
         if (posiciones.contains(nombres)){
 
         }
@@ -224,12 +224,12 @@ public class Controlador {
         }
       }
 
-      else if (comando.equals(">=PROMEDIO")) {
+      if (comando.contains(">=PROMEDIO")) {
       
       }
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=MULT".
-      else if (comando.equals(">=MULT")) {
+      if (comando.contains(">=MULT")) {
         if (posiciones.contains(nombres)){
 
         }
@@ -300,12 +300,12 @@ public class Controlador {
         }
       }
 
-      else if (comando.equals(">=MEDIANA")) {
+      if (comando.contains(">=MEDIANA")) {
 
       }
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=MIN".
-      else if (comando.equals(">=MIN")) {
+      if (comando.contains(">=MIN")) {
         //Se obtiene el número como String de la celda en que se va a empezar.
         primerLetra = posiciones.charAt(1);
 
@@ -425,7 +425,7 @@ public class Controlador {
       }
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=MAX".
-      else if (comando.equals(">=MAX")) {
+      if (comando.contains(">=MAX")) {
 
         //Se obtiene el número como String de la celda en que se va a empezar.
         primerLetra = posiciones.charAt(1);
