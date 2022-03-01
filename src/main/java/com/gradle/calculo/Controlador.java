@@ -51,9 +51,8 @@ public class Controlador {
     for (int i = 0; i < rows; i++) {
       for (int k = 0; k < cols; k++) {
         datos[i][k] = input.next();
-        //System.out.print(datos[i][k]);
       }
-      //System.out.println("");
+
     }
 
     //Dos ciclos for que exploran la matriz y reemplazan el carácter ',' por un
@@ -62,6 +61,10 @@ public class Controlador {
       for (int k = 0; k < cols; k++) {
         datos[i][k] = datos[i][k].replace(',',' ');
         datos[i][k] = datos[i][k].replace(" ","");
+        String num = datos[i][k].split("/")[0];
+        String den = datos[i][k].split("/")[1];
+        Fraccion ff = new Fraccion(num, den);
+        datos [i][k] = ff.toString();
       }
     }
     input.nextLine();
