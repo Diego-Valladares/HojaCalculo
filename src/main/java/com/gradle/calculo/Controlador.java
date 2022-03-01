@@ -144,11 +144,15 @@ public class Controlador {
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=IMPRIMIR".
       if (comando.contains(">=IMPRIMIR")){
+        if (posiciones.contains(nombres)){
+          HojaDeCalculo.imprimirConjunto(nombres, arregloConjuntos);
+        }
+        else {
           //Invocación del método que se usará para imprimir la matriz.
           HojaDeCalculo.Imprimir(rows, cols,datos);
-
           //Se detiene la ejecución del programa.
           break;
+        }
       }
 
 

@@ -44,7 +44,6 @@ public class HojaDeCalculo
       System.out.printf("%s ", lineaDivisora);
     }
     System.out.println();
-    //max = max +1;
     for (int i = 0; i < rows; i ++){
       System.out.printf("%"+espacioNum+"d|", i+1);
       for (int k = 0; k < cols; k++){
@@ -54,4 +53,12 @@ public class HojaDeCalculo
     }
 
   }
+
+  public static void imprimirConjunto (String nombres, String[] arregloConjuntos){
+    System.out.printf("%s -> ", nombres);
+    for (int i = 1; i < arregloConjuntos.length; i++){
+      System.out.printf("%s ", arregloConjuntos[i]);
+    }
+  }
+
 } //java -jar HojaCalculo-1.0.jar < ../../tests/input006.txt
