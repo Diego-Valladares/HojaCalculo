@@ -155,7 +155,6 @@ public class Controlador {
           //Invocación del método que se usará para imprimir la matriz.
           HojaDeCalculo.Imprimir(rows, cols,datos);
           //Se detiene la ejecución del programa.
-          break;
         }
       }
 
