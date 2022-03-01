@@ -54,11 +54,18 @@ public class HojaDeCalculo
 
   }
 
-  public static void imprimirConjunto (String nombres, String[] arregloConjuntos){
+  public static void imprimirConjunto (String nombres, String[] arregloConjuntos, String[][] datos){
     System.out.printf("%s -> ", nombres);
     for (int i = 1; i < arregloConjuntos.length; i++){
-      System.out.printf("%s ", arregloConjuntos[i]);
+      char row = arregloConjuntos[i].charAt(1);
+      int row1 = Character.getNumericValue(row);
+      row1 = row1 - 1;
+      int col1 = arregloConjuntos[i].charAt(0);
+      col1 = col1 - 65;
+
+      System.out.printf("%s ", datos[row1][col1]);
     }
+    System.out.println("");
   }
 
 } //java -jar HojaCalculo-1.0.jar < ../../tests/input006.txt

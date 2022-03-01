@@ -60,7 +60,6 @@ public class Controlador {
     //espacio vacío en cada componente de la matriz.
     for (int i = 0; i < rows; i++) {
       for (int k = 0; k < cols; k++) {
-        //datos[i][k] = datos[i][k].replace(',',' ');
         datos[i][k] = datos[i][k].replace(" ","");
         String num = datos[i][k].split("/")[0];
         String den = datos[i][k].split("/")[1];
@@ -71,7 +70,7 @@ public class Controlador {
     input.nextLine();
 
     //Se establece el delimitador que salte en "(".
-    this.input.useDelimiter("[\\n (]");
+    input.useDelimiter("[\\n(]");
 
     //Ciclo while que indica que lo que está en su interior se ejecuta mientras
     //haya una cadena texto.
@@ -79,14 +78,14 @@ public class Controlador {
     String nombres = "Vacio";
     String [] arregloConjuntos = new String[0];
 
-    while (this.input.hasNextLine()) {
+    while (input.hasNextLine()) {
 
       //Variable que indicará cual comando se recibirá.
-      String comando = this.input.next();
+      String comando = input.next();
       //System.out.println(comando);
 
       //Variable que recibe las posiciones que se van a usar en el comando.
-      String posiciones = this.input.next();
+      String posiciones = input.next();
       //System.out.println(posiciones);
 
 
@@ -132,8 +131,10 @@ public class Controlador {
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=CONJUNTO".
       if (comando.contains(">=CONJUNTO")) {
+        posiciones = posiciones.replaceAll(" ", "");
+        posiciones = posiciones.replace(')',' ');
         nombres = posiciones.split(",")[0];
-        //System.out.println(nombres);
+
         //Se eliminan las comas en comando y se cuenta lo que hay.
         int temp = posiciones.split(",").length;
         //Se crea un arreglo de Strings de tamaño "temp".
@@ -148,7 +149,7 @@ public class Controlador {
       //If que indica que lo que tiene se ejecuta si el comando es ">=IMPRIMIR".
       if (comando.contains(">=IMPRIMIR")){
         if (posiciones.contains(nombres)){
-          HojaDeCalculo.imprimirConjunto(nombres, arregloConjuntos);
+          HojaDeCalculo.imprimirConjunto(nombres, arregloConjuntos, datos);
         }
         else {
           //Invocación del método que se usará para imprimir la matriz.
