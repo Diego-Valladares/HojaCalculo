@@ -73,6 +73,7 @@ public class Controlador {
     //haya una cadena texto.
 
     String nombres = "Vacio";
+    String [] arregloConjuntos = new String[0];
 
     while (this.input.hasNextLine()) {
 
@@ -131,15 +132,13 @@ public class Controlador {
         nombres = posiciones.split(",")[0];
         //System.out.println(nombres);
         //Se eliminan las comas en comando y se cuenta lo que hay.
-        int temp = comando.split(",").length;
-
+        int temp = posiciones.split(",").length;
         //Se crea un arreglo de Strings de tamaño "temp".
-        String[] arregloConjuntos = new String[temp];
-
+        arregloConjuntos = new String[temp];
         //Ciclo for que explora arregloConjuntos y elimina las comas del
         //comando.
         for (int index = 1; index < temp; index++) {
-          arregloConjuntos[index] = comando.split(",")[index];
+          arregloConjuntos[index] = posiciones.split(",")[index];
         }
       }
 
@@ -156,7 +155,8 @@ public class Controlador {
       //If que indica que lo que tiene se ejecuta si el comando es ">=SUMA".
       if (comando.contains(">=SUMA")){
         if (posiciones.contains(nombres)){
-          ;
+          ListaDeFracciones suma = new ListaDeFracciones();
+          datos[celdaRow][celdaCol] = suma.sumaConjunto(arregloConjuntos, datos);
         }
         else  {
 
@@ -240,7 +240,8 @@ public class Controlador {
       //If que indica que lo que tiene se ejecuta si el comando es ">=MULT".
       if (comando.contains(">=MULT")) {
         if (posiciones.contains(nombres)){
-
+          ListaDeFracciones multiplicacion = new ListaDeFracciones();
+          datos[celdaRow][celdaCol] = multiplicacion.multConjunto(arregloConjuntos, datos);
         }
         else {
           //Se obtiene el número como String de la celda en que se va a empezar.
@@ -249,7 +250,7 @@ public class Controlador {
           //Se establece la variable "row1" con el valor de primeraLetra como
           //int.
           row1 = Character.getNumericValue(primerLetra);
-
+          row1 = row1 - 1;
           //Se obtiene la letra de la celda en que se va a empezar.
           primerLetra = posiciones.charAt(0);
 
@@ -264,14 +265,14 @@ public class Controlador {
 
           //Se obtiene el número como String de la celda en que se va a
           //terminar.
-          primerLetra = posiciones.charAt(3);
+          primerLetra = posiciones.charAt(4);
 
           //Se establece la variable "row2" con el valor de primeraLetra como
           //int.
           row2 = Character.getNumericValue(primerLetra);
-
+          row2 = row2 - 1;
           //Se obtiene la letra de la celda en que se va a empezar.
-          primerLetra = posiciones.charAt(4);
+          primerLetra = posiciones.charAt(3);
 
           //Se establece la columna de la celda en que se va a empezar con lo
           //que hay en "primeraLetra".
@@ -288,6 +289,7 @@ public class Controlador {
 
           //Creación de una nueva instancia de clase Fraccion con "num2" y
           //"den2".
+
           Fraccion f2 = new Fraccion(num2,den2);
 
           //Dos ciclos dor donde se exploran las celdas de la matriz, se
@@ -300,7 +302,12 @@ public class Controlador {
               num1 = datos[i][k].split("/")[0];
               den1 = datos[i][k].split("/")[1];
               Fraccion f1 = new Fraccion(num1, den1);
-              f2 = f2.multiplicar(f1);
+              if (i == row1 && k == col1){
+                f2 = f1;
+              }
+              else {
+                f2 = f1.multiplicar(f2);
+              }
             }
           }
 
