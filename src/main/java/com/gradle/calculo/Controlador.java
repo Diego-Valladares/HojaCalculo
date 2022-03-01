@@ -86,10 +86,9 @@ public class Controlador {
       //System.out.println(posiciones);
 
 
-      //Variables que indicarán la primera y segunda letra de las posiciones
+      //Variable que indicará la letra de las posiciones
       //usadas por el comando.
       char primerLetra;
-      char segundLetra;
 
       //Variables que indicarán los numeradores y denominadores de los
       //contenidos de las posiciones usadas por el comando.
@@ -332,7 +331,7 @@ public class Controlador {
         //Se establece la variable "row1" con el valor de primeraLetra como
         //int.
         row1 = Character.getNumericValue(primerLetra);
-
+        row1 = row1 - 1;
         //Se obtiene la letra de la celda en que se va a empezar.
         primerLetra = posiciones.charAt(0);
 
@@ -347,14 +346,14 @@ public class Controlador {
 
         //Se obtiene el número como String de la celda en que se va a
         //terminar.
-        primerLetra = posiciones.charAt(3);
+        primerLetra = posiciones.charAt(4);
 
         //Se establece la variable "row2" con el valor de primeraLetra como
         //int.
         row2 = Character.getNumericValue(primerLetra);
 
         //Se obtiene la letra de la celda en que se va a empezar.
-        primerLetra = posiciones.charAt(4);
+        primerLetra = posiciones.charAt(3);
 
         //Se establece la columna de la celda en que se va a empezar con lo
         //que hay en "primeraLetra".
@@ -388,20 +387,20 @@ public class Controlador {
         //Se crea un arreglo de tipo String de tamaño row2 * col2 para que
         //contenga las coordenadas de los valores obtenidos.
         String[] cords = new String[row2 * col2];
-
+        row2 = row2 - 1;
         //Dos ciclos for donde se obtienen los datos de las celdas que se
         //analizan, se establece el numerador y el denominador, se hace la
         //división para sacar el valor de cada fracción; el valor va al arreglo
         //"menores" y las coordenadas al arreglo "cords" y el contador aumenta.
         for (int i = row1; i <= row2; i++){
-          for (int k = col1; k <= col2; k++){
+          for (int k = col1; k < col2; k++){
             minimo = datos[i][k].split("/")[0];
             numerador = Double.parseDouble(minimo);
             minimo = datos[i][k].split("/")[1];
             denominador = Double.parseDouble(minimo);
             total = numerador / denominador;
             menores[contador] = total;
-            cords[contador] = i +" "+ k;
+            cords[contador] = i +"/"+ k;
             contador++;
           }
         }
@@ -411,16 +410,16 @@ public class Controlador {
 
         //Variable que se usará para tener el valor del número que se esté
         //revisando en un momento específico.
-        double num = 0;
+        double num;
 
         //Variable que se usará para tener la ubicación de las coordenadas del
         //valor menor en el arreglo "cords".
-        int coordenada = 0;
+        int coordenada = 1;
 
         //Ciclo for que recorre el arreglo "menores", compara si un valor es
         //menor que otro, cuando quede establecido el menor, se establecerá la
         //coordenada con su valor final en el arreglo "cords".
-        for (int index = 0; index < (row2 * col2); index++) {
+        for (int index = 0; index < menores.length; index++) {
           num = menores[index];
           if (index == 0) {
             min = num;
@@ -432,15 +431,17 @@ public class Controlador {
           }
         }
 
+        coordenada = coordenada - 1;
         //Variable que tiene la fila de la matriz donde está el dato menor.
         char fila = cords[coordenada].charAt(0);
-
+        int fila2 = Character.getNumericValue(fila);
         //Variable que tiene la columna de la matriz donde está el dato menor.
         char columna = cords[coordenada].charAt(2);
+        int columna2 = Character.getNumericValue(columna);
 
         //Se establece que la celda que se va a modificar tendrá el valor
         //almacenado en datos[fila][columna].
-        datos[celdaRow][celdaCol] = datos[fila][columna];
+        datos[celdaRow][celdaCol] = datos[fila2][columna2];
 
       }
 
@@ -453,7 +454,7 @@ public class Controlador {
         //Se establece la variable "row1" con el valor de primeraLetra como
         //int.
         row1 = Character.getNumericValue(primerLetra);
-
+        row1 = row1 - 1;
         //Se obtiene la letra de la celda en que se va a empezar.
         primerLetra = posiciones.charAt(0);
 
@@ -468,14 +469,13 @@ public class Controlador {
 
         //Se obtiene el número como String de la celda en que se va a
         //terminar.
-        primerLetra = posiciones.charAt(3);
+        primerLetra = posiciones.charAt(4);
 
         //Se establece la variable "row2" con el valor de primeraLetra como
         //int.
         row2 = Character.getNumericValue(primerLetra);
-
         //Se obtiene la letra de la celda en que se va a empezar.
-        primerLetra = posiciones.charAt(4);
+        primerLetra = posiciones.charAt(3);
 
         //Se establece la columna de la celda en que se va a empezar con lo
         //que hay en "primeraLetra".
@@ -510,19 +510,21 @@ public class Controlador {
         //contenga las coordenadas de los valores obtenidos.
         String[] cords = new String[row2 * col2];
 
+        row2 = row2 - 1;
+
         //Dos ciclos for donde se obtienen los datos de las celdas que se
         //analizan, se establece el numerador y el denominador, se hace la
         //división para sacar el valor de cada fracción; el valor va al arreglo
         //"mayores" y las coordenadas al arreglo "cords" y el contador aumenta.
         for (int i = row1; i <= row2; i++){
-          for (int k = col1; k <= col2; k++){
+          for (int k = col1; k < col2; k++){
             maximo = datos[i][k].split("/")[0];
             numerador = Double.parseDouble(maximo);
             maximo = datos[i][k].split("/")[1];
             denominador = Double.parseDouble(maximo);
             total = numerador / denominador;
             mayores[contador] = total;
-            cords[contador] = i +" "+ k;
+            cords[contador] = i +"/"+ k;
             contador++;
           }
         }
@@ -532,7 +534,7 @@ public class Controlador {
 
         //Variable que se usará para tener el valor del número que se esté
         //revisando en un momento específico.
-        double num = 0;
+        double num;
 
         //Variable que se usará para tener la ubicación de las coordenadas del
         //valor menor en el arreglo "cords".
@@ -541,7 +543,7 @@ public class Controlador {
         //Ciclo for que recorre el arreglo "mayores", compara si un valor es
         //mayor que otro, cuando quede establecido el menor, se establecerá la
         //coordenada con su valor final en el arreglo "cords".
-        for (int index = 0; index < (row2 * col2); index++) {
+        for (int index = 0; index < mayores.length; index++) {
           num = mayores[index];
 
           if (num > max) {
@@ -549,16 +551,16 @@ public class Controlador {
             coordenada = index;
           }
         }
-
         //Variable que tiene la fila de la matriz donde está el dato mayor.
         char fila = cords[coordenada].charAt(0);
-
+        int fila2 = Character.getNumericValue(fila);
         //Variable que tiene la columna de la matriz donde está el dato mayor.
         char columna = cords[coordenada].charAt(2);
+        int columna2 = Character.getNumericValue(columna);
 
         //Se establece que la celda que se va a modificar tendrá el valor
         //almacenado en datos[fila][columna].
-        datos[celdaRow][celdaCol] = datos[fila][columna];
+        datos[celdaRow][celdaCol] = datos[fila2][columna2];
 
       }
 
