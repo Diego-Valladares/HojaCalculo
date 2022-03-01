@@ -40,13 +40,14 @@ public class Controlador {
     int rows = input.nextInt();
     int cols = input.nextInt();
 
-    //System.out.println(rows +" "+cols);
+
 
     input.nextLine();
     input.nextLine();
 
     //Creación de la matriz que se llena con lo de la entrada estándar por medio
     //de 2 ciclos for.
+    input.useDelimiter("[,\\n]");
     String[][] datos = new String[rows][cols];
     for (int i = 0; i < rows; i++) {
       for (int k = 0; k < cols; k++) {
@@ -59,7 +60,7 @@ public class Controlador {
     //espacio vacío en cada componente de la matriz.
     for (int i = 0; i < rows; i++) {
       for (int k = 0; k < cols; k++) {
-        datos[i][k] = datos[i][k].replace(',',' ');
+        //datos[i][k] = datos[i][k].replace(',',' ');
         datos[i][k] = datos[i][k].replace(" ","");
         String num = datos[i][k].split("/")[0];
         String den = datos[i][k].split("/")[1];
