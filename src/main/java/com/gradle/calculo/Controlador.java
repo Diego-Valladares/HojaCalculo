@@ -72,6 +72,8 @@ public class Controlador {
     //Ciclo while que indica que lo que está en su interior se ejecuta mientras
     //haya una cadena texto.
 
+    String nombres = "Vacio";
+
     while (this.input.hasNextLine()) {
 
       //Variable que indicará cual comando se recibirá.
@@ -124,13 +126,10 @@ public class Controlador {
         celdaCol = celdaCol - 65;
       }
 
-      String nombres = "Vacio";
-
       //If que indica que lo que tiene se ejecuta si el comando es ">=CONJUNTO".
       if (comando.contains(">=CONJUNTO")) {
-
         nombres = posiciones.split(",")[0];
-
+        //System.out.println(nombres);
         //Se eliminan las comas en comando y se cuenta lo que hay.
         int temp = comando.split(",").length;
 
@@ -156,8 +155,8 @@ public class Controlador {
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=SUMA".
       if (comando.contains(">=SUMA")){
-        if (posiciones.contains("conj")){
-
+        if (posiciones.contains(nombres)){
+          ;
         }
         else  {
 
