@@ -213,7 +213,7 @@ public class Controlador {
           //instancia de la clase Fraccion con "num1" y "num2" y f2 pasa a tener
           //el valor de lo que se sume entre ella y f1.
 
-          System.out.println(row1 +" "+ col1 +" | "+row2 +" "+ col2);
+          //System.out.println(row1 +" "+ col1 +" | "+row2 +" "+ col2);
           for (int i = row1; i <= row2; i++){
             for (int k = col1; k <= col2; k++){
               num1 = datos[i][k].split("/")[0];
