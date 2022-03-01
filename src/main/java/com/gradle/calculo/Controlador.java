@@ -110,7 +110,7 @@ public class Controlador {
 
         //Se establece la celda con el valor de primeraLetra como int.
         celdaRow = Character.getNumericValue(primerLetra);
-
+        celdaRow = celdaRow - 1;
         //Se obtiene la letra de la celda que se va a modificar.
         primerLetra = posiciones.charAt(0);
 
@@ -124,19 +124,12 @@ public class Controlador {
         celdaCol = celdaCol - 65;
       }
 
-      String nombres = posiciones.split(",")[0];
-
-      //If que indica que lo que tiene se ejecuta si el comando es ">=IMPRIMIR".
-      if (comando.contains(">=IMPRIMIR")){
-          //Invocación del método que se usará para imprimir la matriz.
-          HojaDeCalculo.Imprimir(rows, cols,datos);
-
-          //Se detiene la ejecución del programa.
-          break;
-      }
+      String nombres = "Vacio";
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=CONJUNTO".
       if (comando.contains(">=CONJUNTO")) {
+
+        nombres = posiciones.split(",")[0];
 
         //Se eliminan las comas en comando y se cuenta lo que hay.
         int temp = comando.split(",").length;
@@ -151,12 +144,22 @@ public class Controlador {
         }
       }
 
+      //If que indica que lo que tiene se ejecuta si el comando es ">=IMPRIMIR".
+      if (comando.contains(">=IMPRIMIR")){
+          //Invocación del método que se usará para imprimir la matriz.
+          HojaDeCalculo.Imprimir(rows, cols,datos);
+
+          //Se detiene la ejecución del programa.
+          break;
+      }
+
+
       //If que indica que lo que tiene se ejecuta si el comando es ">=SUMA".
       if (comando.contains(">=SUMA")){
-        if (posiciones.contains(nombres)){
+        if (posiciones.contains("conj")){
 
         }
-        else {
+        else  {
 
           //Se obtiene el número como String de la celda en que se va a empezar.
           primerLetra = posiciones.charAt(1);
@@ -164,7 +167,7 @@ public class Controlador {
           //Se establece la variable "row1" con el valor de primeraLetra como
           //int.
           row1 = Character.getNumericValue(primerLetra);
-
+          row1 = row1 - 1;
           //Se obtiene la letra de la celda en que se va a empezar.
           primerLetra = posiciones.charAt(0);
 
@@ -179,14 +182,14 @@ public class Controlador {
 
           //Se obtiene el número como String de la celda en que se va a
           //terminar.
-          primerLetra = posiciones.charAt(3);
+          primerLetra = posiciones.charAt(4);
 
           //Se establece la variable "row2" con el valor de primeraLetra como
           //int.
           row2 = Character.getNumericValue(primerLetra);
-
+          row2 = row2 - 1;
           //Se obtiene la letra de la celda en que se va a empezar.
-          primerLetra = posiciones.charAt(4);
+          primerLetra = posiciones.charAt(3);
 
           //Se establece la columna de la celda en que se va a empezar con lo
           //que hay en "primeraLetra".
@@ -196,26 +199,32 @@ public class Controlador {
           //quede establecido en la columna de la celda de la matriz que se
           //modifica.
           col2 = col2 - 65;
-
           //Se establecen "num2" y "den2" como "0".
           num2 = "0";
-          den2 = "0";
+          den2 = "1";
 
           //Creación de una nueva instancia de clase Fraccion con "num2" y
           //"den2".
           Fraccion f2 = new Fraccion(num2,den2);
 
-          //Dos ciclos dor donde se exploran las celdas de la matriz, se
+          //Dos ciclos por donde se exploran las celdas de la matriz, se
           //establece que los numeradores y denominadores tienen los valores
           //de números que tienen sin el carácter "/", se crea una nueva
           //instancia de la clase Fraccion con "num1" y "num2" y f2 pasa a tener
           //el valor de lo que se sume entre ella y f1.
+
+          System.out.println(row1 +" "+ col1 +" | "+row2 +" "+ col2);
           for (int i = row1; i <= row2; i++){
             for (int k = col1; k <= col2; k++){
               num1 = datos[i][k].split("/")[0];
               den1 = datos[i][k].split("/")[1];
               Fraccion f1 = new Fraccion(num1, den1);
-              f2 = f2.sumar(f1);
+              if (i == row1 && k == col1){
+                f2 = f1;
+              }
+              else{
+                f2 = f1.sumar(f2);
+              }
             }
           }
 
