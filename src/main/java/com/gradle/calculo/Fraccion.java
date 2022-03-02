@@ -93,11 +93,16 @@ public class Fraccion {
     simplificar();
   }
 
-  //Método getter que obtiene el valor de la variable numerador de la clase.
+  /**
+   * Método getter que obtiene el valor de la variable numerador de la clase.
+   */
   public BigDecimal getNumerador() {
     return this.numerador;
   }
 
+  /**
+   * Método getter que obtiene el valor de la variable denominador de la clase.
+   */
   public BigDecimal getDenominador() {
     return this.denominador;
   }
