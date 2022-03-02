@@ -5,21 +5,53 @@ import java.awt.*;
 
 public class Fraccion {
 
+  /**
+   * Numerador de la clase.
+   */
   private BigDecimal numerador;
 
+  /**
+   * Denominador de la clase.
+   */
   private BigDecimal denominador;
 
+  /**
+   * Constructor de Fracción por defecto.
+   */
   public Fraccion() {
+
+    //Numerador del constructor.
     this.numerador = new BigDecimal("0");
+
+    //Denominador del constructor.
     this.denominador = new BigDecimal("1");
   }
 
+  /**
+   * Constructor con un número entero.
+   *
+   * @param pNumerador Recibe una variable de tipo {@code String} que
+   *                   corresponde al numerador, que es el único número que
+   *                   recibe.
+   */
   public Fraccion(final String pNumerador) {
     this.numerador = new BigDecimal(pNumerador);
     this.denominador = new BigDecimal("1");
   }
 
+  /**
+   * Constructor de una fracción negativa usando {@code String}.
+   *
+   * @param pNumerador Recibe una variable de tipo {@code String} que indica el
+   *                   numerador de la fracción.
+   * @param pDenominador Recibe una variable de tipo {@code String} que indica
+   *                     el denominador de la fracción.
+   */
   public Fraccion(final String pNumerador, final String pDenominador) {
+
+    //If que indica que si el denominador tiene símbolo negativo, su numerador
+    //se multiplica por -1 y su denominador se convierte a su valor absoluto; si
+    //eso no pasa, ambos quedan iguales.
     if (pDenominador.charAt(0) == '-') {
       this.numerador = new BigDecimal(pNumerador).multiply(new BigDecimal(-1));
       this.denominador = new BigDecimal(pDenominador).abs();
@@ -27,10 +59,24 @@ public class Fraccion {
       this.numerador = new BigDecimal(pNumerador);
       this.denominador = new BigDecimal(pDenominador);
     }
+
+    //Invocación al método para simplificar la fracción.
     simplificar();
   }
 
+  /**
+   * Constructor de una fracción negativa usando {@code BigDecimal}.
+   *
+   * @param pNumerador Recibe una variable de tipo {@code BigDecimal} que
+   *                   indica el numerador de la fracción.
+   * @param pDenominador Recibe una variable de tipo {@code BigDecimal} que
+   *                     indica el denominador de la fracción.
+   */
   public Fraccion(final BigDecimal pNumerador, final BigDecimal pDenominador) {
+
+    //If que indica que si el denominador tiene símbolo negativo, su numerador
+    //se multiplica por -1 y su denominador se convierte a su valor absoluto; si
+    //eso no pasa, ambos quedan iguales.
     if (pDenominador.compareTo(BigDecimal.ZERO) < 0) {
       this.numerador = pNumerador.multiply(new BigDecimal(-1));
       this.denominador = pDenominador.abs();
@@ -38,6 +84,8 @@ public class Fraccion {
       this.numerador = new BigDecimal(pNumerador.toString());
       this.denominador = new BigDecimal(pDenominador.toString());
     }
+
+    //Invocación al método para simplificar la fracción.
     simplificar();
   }
 

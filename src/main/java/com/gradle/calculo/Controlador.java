@@ -26,9 +26,13 @@ public class Controlador {
 
   }
 
-  //Variable que contiene la fila en que actualizará la información.
+  /**
+   * Variable que contiene la fila en que actualizará la información.
+   */
   static int celdaRow = 0;
-  //Variable que contiene la columna en que actualizará la información.
+  /**
+   * Variable que contiene la columna en que actualizará la información.
+   */
   static int celdaCol = 0;
 
   /**
