@@ -107,6 +107,11 @@ public class Fraccion {
     return this.denominador;
   }
 
+  /**
+   * Representa la fracción como una cadena de caracteres.
+   *
+   * @return Retorna un String con la representación de la fracción.
+   */
   public String toString() {
     return  numerador.toString() + "/" + denominador.toString();
   }
@@ -130,7 +135,17 @@ public class Fraccion {
     this.denominador = this.denominador.divide(mcd);
   }
 
+  /**
+   * Método que suma fracciones.
+   *
+   * @param fraction Recibe un objeto de tipo {@code Fraccion} que contiene la
+   *                 fracción que se está sumando.
+   * @return Retorna el resultado de la suma.
+   */
   public Fraccion sumar(final Fraccion fraction) {
+
+    //Se convierten las fracciones a homogéneas las fracciones y se suman; el
+    //resultado se retorna.
     BigDecimal num1 = this.numerador.multiply(fraction.getDenominador());
     BigDecimal num2 = fraction.numerador.multiply(this.denominador);
     BigDecimal nuevoNumerador = num1.add(num2);
@@ -139,11 +154,25 @@ public class Fraccion {
     return new Fraccion(nuevoNumerador, nuevoDenominador);
   }
 
+
+  /**
+   * Método que multiplica fracciones.
+   *
+   * @param fraction Recibe un objeto de tipo {@code Fraccion} que contiene la
+   *                 fracción que se está multiplicando.
+   * @return Retorna el resultado de la multiplicación.
+   */
   public Fraccion multiplicar(final Fraccion fraction) {
+
+    //Se multiplican los numeradores.
     BigDecimal nuevoNumerador = this.numerador.multiply(
         fraction.getNumerador());
+
+    //Se multiplican los denominadores.
     BigDecimal nuevoDenominador = this.denominador.multiply(
         fraction.getDenominador());
+
+    //Se retorna el resultado.
     return new Fraccion(nuevoNumerador, nuevoDenominador);
   }
 
