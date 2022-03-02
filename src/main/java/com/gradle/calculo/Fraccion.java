@@ -135,14 +135,30 @@ public class Fraccion {
     this.denominador = this.denominador.divide(mcd);
   }
 
+  /**
+   * Método que suma fracciones.
+   *
+   * @param fraction Recibe un objeto de tipo {@code Fraccion} que contiene la
+   *                 fracción que se está sumando.
+   * @return Retorna el resultado de la suma.
+   */
   public Fraccion sumar(final Fraccion fraction) {
+
+    //Se obtiene el numerador.
     BigDecimal num1 = this.numerador.multiply(fraction.getDenominador());
+
+    //Se obtiene el denominador.
     BigDecimal num2 = fraction.numerador.multiply(this.denominador);
+
+    //Se suman numeradores.
     BigDecimal nuevoNumerador = num1.add(num2);
+
+    //Se multiplican los denominadores.
     BigDecimal nuevoDenominador = this.denominador.multiply(
         fraction.getDenominador());
     return new Fraccion(nuevoNumerador, nuevoDenominador);
   }
+
 
   public Fraccion multiplicar(final Fraccion fraction) {
     BigDecimal nuevoNumerador = this.numerador.multiply(
