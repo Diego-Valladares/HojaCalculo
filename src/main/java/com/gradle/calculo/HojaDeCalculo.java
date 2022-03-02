@@ -1,12 +1,35 @@
 package com.gradle.calculo;
 
+/**
+ * Clase que crea objetos relacionados con hojas de cálculo e imprime.
+ */
 public class HojaDeCalculo
 {
-
+  /**
+   * Filas de la clase.
+   */
   int rows;
+
+  /**
+   * Columnas de la clase.
+   */
   int cols;
+
+  /**
+   * Matriz que tiene los datos de la clase.
+   */
   String [][] datos;
 
+  /**
+   * Constructor de la clase.
+   *
+   * @param rows Recibe una variable de tipo {@code int} que tiene la cantidad
+   *             de filas de la clase.
+   * @param cols Recibe una variable de tipo {@code int} que tiene la cantidad
+   *             de columnas de la clase.
+   * @param datos Recibe una matriz de tipo {@code String[][]} que tiene los
+   *              datos guardados para la clase.
+   */
   HojaDeCalculo(int rows, int cols, String[][] datos){
     this.rows = rows;
     this.cols = cols;
