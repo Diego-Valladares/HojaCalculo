@@ -3,6 +3,10 @@ package com.gradle.calculo;
 import java.math.BigDecimal;
 import java.awt.*;
 
+/**
+ * Clase de la que se crean objetos asociados a fracciones y se resuelven
+ * operaciones relacionadas.
+ */
 public class Fraccion {
 
   /**
@@ -89,6 +93,7 @@ public class Fraccion {
     simplificar();
   }
 
+  //Método getter que obtiene el valor de la variable numerador de la clase.
   public BigDecimal getNumerador() {
     return this.numerador;
   }
