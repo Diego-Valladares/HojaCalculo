@@ -107,6 +107,11 @@ public class Fraccion {
     return this.denominador;
   }
 
+  /**
+   * Representa la fracción como una cadena de caracteres.
+   *
+   * @return Retorna un String con la representación de la fracción.
+   */
   public String toString() {
     return  numerador.toString() + "/" + denominador.toString();
   }
