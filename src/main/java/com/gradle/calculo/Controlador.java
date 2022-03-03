@@ -82,6 +82,8 @@ public class Controlador {
     String nombres = "Vacio";
     String [] arregloConjuntos = new String[0];
 
+    HashMap<String, String[]> Conjuntos = new HashMap<String, String[]>();
+
     while (input.hasNextLine()) {
 
       //Variable que indicará cual comando se recibirá.
@@ -135,9 +137,10 @@ public class Controlador {
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=CONJUNTO".
       if (comando.contains(">=CONJUNTO")) {
-        posiciones = posiciones.replaceAll(" ", "");
         posiciones = posiciones.replace(')',' ');
+        posiciones = posiciones.replaceAll(" ", "");
         nombres = posiciones.split(",")[0];
+
 
         //Se eliminan las comas en comando y se cuenta lo que hay.
         int temp = posiciones.split(",").length;
@@ -148,11 +151,17 @@ public class Controlador {
         for (int index = 1; index < temp; index++) {
           arregloConjuntos[index] = posiciones.split(",")[index];
         }
+        Conjuntos.put(nombres,arregloConjuntos);
+        //System.out.println(Conjuntos);
       }
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=IMPRIMIR".
       if (comando.contains(">=IMPRIMIR")){
-        if (posiciones.contains(nombres)){
+        posiciones = posiciones.replace(')',' ');
+        posiciones = posiciones.replaceAll(" ", "");
+        if (Conjuntos.containsKey(posiciones)){
+          nombres = posiciones;
+          arregloConjuntos = Conjuntos.get(posiciones);
           HojaDeCalculo.imprimirConjunto(nombres, arregloConjuntos, datos);
         }
         else {
@@ -165,7 +174,10 @@ public class Controlador {
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=SUMA".
       if (comando.contains(">=SUMA")){
-        if (posiciones.contains(nombres)){
+        posiciones = posiciones.replace(')',' ');
+        posiciones = posiciones.replaceAll(" ", "");
+        if (Conjuntos.containsKey(posiciones)){
+          arregloConjuntos = Conjuntos.get(posiciones);
           ListaDeFracciones suma = new ListaDeFracciones();
           datos[celdaRow][celdaCol] = suma.sumaConjunto(arregloConjuntos, datos);
         }
@@ -324,7 +336,10 @@ public class Controlador {
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=MULT".
       if (comando.contains(">=MULT")) {
-        if (posiciones.contains(nombres)){
+        posiciones = posiciones.replace(')',' ');
+        posiciones = posiciones.replaceAll(" ", "");
+        if (Conjuntos.containsKey(posiciones)){
+          arregloConjuntos = Conjuntos.get(posiciones);
           ListaDeFracciones multiplicacion = new ListaDeFracciones();
           datos[celdaRow][celdaCol] = multiplicacion.multConjunto(arregloConjuntos, datos);
         }
