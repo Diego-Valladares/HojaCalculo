@@ -60,8 +60,8 @@ public class Controlador {
 
     }
 
-    //Dos ciclos for que exploran la matriz y reemplazan el carácter ',' por un
-    //espacio vacío en cada componente de la matriz.
+    //Dos ciclos for que exploran la matriz y reemplazan un espacio vacío por
+    //un borrado de espacio en cada componente de la matriz.
     for (int i = 0; i < rows; i++) {
       for (int k = 0; k < cols; k++) {
         datos[i][k] = datos[i][k].replace(" ","");
@@ -76,14 +76,14 @@ public class Controlador {
     //Se establece el delimitador que salte en "(".
     input.useDelimiter("[\\n(]");
 
-    //Ciclo while que indica que lo que está en su interior se ejecuta mientras
-    //haya una cadena texto.
 
     String nombres = "Vacio";
     String [] arregloConjuntos = new String[0];
 
     HashMap<String, String[]> Conjuntos = new HashMap<String, String[]>();
 
+    //Ciclo while que indica que lo que está en su interior se ejecuta mientras
+    //haya una cadena texto.
     while (input.hasNextLine()) {
 
       //Variable que indicará cual comando se recibirá.
@@ -234,8 +234,6 @@ public class Controlador {
           //de números que tienen sin el carácter "/", se crea una nueva
           //instancia de la clase Fraccion con "num1" y "num2" y f2 pasa a tener
           //el valor de lo que se sume entre ella y f1.
-
-          //System.out.println(row1 +" "+ col1 +" | "+row2 +" "+ col2);
           for (int i = row1; i <= row2; i++){
             for (int k = col1; k <= col2; k++){
               num1 = datos[i][k].split("/")[0];
@@ -309,7 +307,6 @@ public class Controlador {
         //instancia de la clase Fraccion con "num1" y "num2" y f2 pasa a tener
         //el valor de lo que se sume entre ella y f1.
 
-        //System.out.println(row1 +" "+ col1 +" | "+row2 +" "+ col2);
         int contador = 0;
         for (int i = row1; i <= row2; i++){
           for (int k = col1; k <= col2; k++){
@@ -325,12 +322,21 @@ public class Controlador {
             contador++;
           }
         }
+
+        //Se establece el numerador de una nueva fracción como 1.
         String num3 = "1";
+
+        //Se establece el denominador de una nueva fracción como el valor del
+        //contador.
         String den3 = Integer.toString(contador);
+
+        //Se establece una nueva instancia de la clase Fraccion con num3 y den3.
         Fraccion f3 = new Fraccion(num3, den3);
+
+        //Se invoca al método "multiplicar" de la clase Fraccion con f2 y f3.
         f3 = f2.multiplicar(f3);
 
-        //Se establece que en la celda que se modifica, estará el valor de f2.
+        //Se establece que en la celda que se modifica, estará el valor de f3.
         datos[celdaRow][celdaCol] = f3.toString();
       }
 
