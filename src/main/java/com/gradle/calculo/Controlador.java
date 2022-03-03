@@ -245,7 +245,81 @@ public class Controlador {
       }
 
       if (comando.contains(">=PROMEDIO")) {
-      
+        //Se obtiene el número como String de la celda en que se va a empezar.
+        primerLetra = posiciones.charAt(1);
+
+        //Se establece la variable "row1" con el valor de primeraLetra como
+        //int.
+        row1 = Character.getNumericValue(primerLetra);
+        row1 = row1 - 1;
+        //Se obtiene la letra de la celda en que se va a empezar.
+        primerLetra = posiciones.charAt(0);
+
+        //Se establece la columna de la celda en que se va a empezar con lo
+        //que hay en "primeraLetra".
+        col1 = primerLetra;
+
+        //Se obtiene el valor numérico de la letra y se le restan 65 para que
+        //quede establecido en la columna de la celda de la matriz que se
+        //modifica.
+        col1 = col1 - 65;
+
+        //Se obtiene el número como String de la celda en que se va a
+        //terminar.
+        primerLetra = posiciones.charAt(4);
+
+        //Se establece la variable "row2" con el valor de primeraLetra como
+        //int.
+        row2 = Character.getNumericValue(primerLetra);
+        row2 = row2 - 1;
+        //Se obtiene la letra de la celda en que se va a empezar.
+        primerLetra = posiciones.charAt(3);
+
+        //Se establece la columna de la celda en que se va a empezar con lo
+        //que hay en "primeraLetra".
+        col2 = primerLetra;
+
+        //Se obtiene el valor numérico de la letra y se le restan 65 para que
+        //quede establecido en la columna de la celda de la matriz que se
+        //modifica.
+        col2 = col2 - 65;
+        //Se establecen "num2" y "den2" como "0".
+        num2 = "0";
+        den2 = "1";
+
+        //Creación de una nueva instancia de clase Fraccion con "num2" y
+        //"den2".
+        Fraccion f2 = new Fraccion(num2,den2);
+
+        //Dos ciclos por donde se exploran las celdas de la matriz, se
+        //establece que los numeradores y denominadores tienen los valores
+        //de números que tienen sin el carácter "/", se crea una nueva
+        //instancia de la clase Fraccion con "num1" y "num2" y f2 pasa a tener
+        //el valor de lo que se sume entre ella y f1.
+
+        //System.out.println(row1 +" "+ col1 +" | "+row2 +" "+ col2);
+        int contador = 0;
+        for (int i = row1; i <= row2; i++){
+          for (int k = col1; k <= col2; k++){
+            num1 = datos[i][k].split("/")[0];
+            den1 = datos[i][k].split("/")[1];
+            Fraccion f1 = new Fraccion(num1, den1);
+            if (i == row1 && k == col1){
+              f2 = f1;
+            }
+            else{
+              f2 = f1.sumar(f2);
+            }
+            contador++;
+          }
+        }
+        String num3 = "1";
+        String den3 = Integer.toString(contador);
+        Fraccion f3 = new Fraccion(num3, den3);
+        f3 = f2.multiplicar(f3);
+
+        //Se establece que en la celda que se modifica, estará el valor de f2.
+        datos[celdaRow][celdaCol] = f3.toString();
       }
 
       //If que indica que lo que tiene se ejecuta si el comando es ">=MULT".
