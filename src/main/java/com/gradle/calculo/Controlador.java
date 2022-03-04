@@ -516,8 +516,8 @@ public class Controlador {
         //Dos ciclos for que exploran minToMax, comparan sus valores y los
         //ordenan.
         for (int i = 0; i < minToMax.length; i++){
+          num = minToMax[i];
           for (int k = i+1; k < minToMax.length; k++){
-            num = minToMax[i];
             if (num > minToMax[k]){
               num = minToMax[k];
             }
