@@ -73,18 +73,19 @@ public class Controlador {
     }
     input.nextLine();
 
+
     //Se establece el delimitador que salte en "(".
     input.useDelimiter("[\\n(]");
 
 
-    String nombres = "Vacio";
-    String [] arregloConjuntos = new String[0];
+    String nombres;
+    String [] arregloConjuntos;
 
     HashMap<String, String[]> Conjuntos = new HashMap<String, String[]>();
 
     //Ciclo while que indica que lo que está en su interior se ejecuta mientras
     //haya una cadena texto.
-    while (input.hasNextLine()) {
+    while (input.hasNextLine() && input.hasNext()) {
 
       //Variable que indicará cual comando se recibirá.
       String comando = input.next();
@@ -423,6 +424,110 @@ public class Controlador {
       }
 
       if (comando.contains(">=MEDIANA")) {
+        //Se obtiene el número como String de la celda en que se va a empezar.
+        primerLetra = posiciones.charAt(1);
+
+        //Se establece la variable "row1" con el valor de primeraLetra como
+        //int.
+        row1 = Character.getNumericValue(primerLetra);
+        row1 = row1 - 1;
+        //Se obtiene la letra de la celda en que se va a empezar.
+        primerLetra = posiciones.charAt(0);
+
+        //Se establece la columna de la celda en que se va a empezar con lo
+        //que hay en "primeraLetra".
+        col1 = primerLetra;
+
+        //Se obtiene el valor numérico de la letra y se le restan 65 para que
+        //quede establecido en la columna de la celda de la matriz que se
+        //modifica.
+        col1 = col1 - 65;
+
+        //Se obtiene el número como String de la celda en que se va a
+        //terminar.
+        primerLetra = posiciones.charAt(4);
+
+        //Se establece la variable "row2" con el valor de primeraLetra como
+        //int.
+        row2 = Character.getNumericValue(primerLetra);
+
+        //Se obtiene la letra de la celda en que se va a empezar.
+        primerLetra = posiciones.charAt(3);
+
+        //Se establece la columna de la celda en que se va a empezar con lo
+        //que hay en "primeraLetra".
+        col2 = primerLetra;
+
+        //Se obtiene el valor numérico de la letra y se le restan 65 para que
+        //quede establecido en la columna de la celda de la matriz que se
+        //modifica.
+        col2 = col2 - 65;
+
+        String frac;
+        double valor;
+        double numerador;
+        double denominador;
+        String valor2;
+
+        int cont = 0;
+        row2 = row2 - 1;
+        for (int i = row1; i <= row2; i++) {
+          for (int k = col1; k <= col2; k++) {
+            cont++;
+          }
+        }
+
+
+        double [] minToMax = new double[cont];
+        double [] ordenados = new double[cont];
+
+
+
+        int contador = 0;
+        HashMap<String,String> valores = new HashMap<String, String>();
+        for (int i = row1; i <= row2; i++) {
+          for (int k = col1; k <= col2; k++) {
+            frac = datos[i][k].split("/")[0];
+            numerador = Double.parseDouble(frac);
+            frac = datos[i][k].split("/")[1];
+            denominador = Double.parseDouble(frac);
+            valor = numerador / denominador;
+            frac = datos[i][k];
+            minToMax[contador] = valor;
+            valor2 = Double.toString(valor);
+            valores.put(valor2, frac);
+            contador++;
+          }
+        }
+
+        double num;
+
+        for (int i = 0; i < minToMax.length; i++){
+          for (int k = i+1; k < minToMax.length; k++){
+            num = minToMax[i];
+            if (num > minToMax[k]){
+              num = minToMax[k];
+            }
+            ordenados[i] = num;
+          }
+        }
+
+        double mediana;
+        String median;
+        int size = ordenados.length;
+
+        if (ordenados.length % 2 == 0){
+          mediana = (ordenados[(size/2)-1] + ordenados[size/2]) / 2;
+
+        }
+        else {
+          mediana = ordenados[size/2];
+          median = Double.toString(mediana);
+          median = valores.get(median);
+          datos[celdaRow][celdaCol] = median;
+        }
+
+
 
       }
 
