@@ -55,7 +55,8 @@ public class HojaDeCalculo
 
     char [] letras = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     int espacioNum = 3;
-    String lineaDivisora = new String(new char[max]).replace("\0", "-");
+    String lineaDivisora = new String(new char[max]).replace("\0",
+        "-");
 
     System.out.print("   |");
     for (int i = 0; i < cols; i ++){
@@ -77,7 +78,9 @@ public class HojaDeCalculo
 
   }
 
-  public static void imprimirConjunto (String nombres, String[] arregloConjuntos, String[][] datos){
+  public static void imprimirConjunto (String nombres,
+                                       String[] arregloConjuntos,
+                                       String[][] datos){
     System.out.printf("%s -> ", nombres);
     for (int i = 1; i < arregloConjuntos.length; i++){
       char row = arregloConjuntos[i].charAt(1);

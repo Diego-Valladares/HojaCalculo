@@ -463,28 +463,38 @@ public class Controlador {
         //modifica.
         col2 = col2 - 65;
 
+        //Variables que van a almacenar los valores de las fracciones analizadas
+        //y los resultados de sus operaciones.
         String frac;
         double valor;
         double numerador;
         double denominador;
         String valor2;
 
+        //Variable que tiene un contador.
         int cont = 0;
         row2 = row2 - 1;
+
+        //Dos ciclos for que van aumentando el contador.
         for (int i = row1; i <= row2; i++) {
           for (int k = col1; k <= col2; k++) {
             cont++;
           }
         }
 
-
+        //Arreglos que se usarán para ordenar las fracciones analizadas.
         double [] minToMax = new double[cont];
         double [] ordenados = new double[cont];
 
 
-
+        //Nuevo contador.
         int contador = 0;
+
+        //HashMap que será igual a los valores String finales.
         HashMap<String,String> valores = new HashMap<String, String>();
+
+        //Dos ciclos for que reciben las fracciones, sacan sus valores
+        //decimales, los agregan al HashMap y aumentan el contador.
         for (int i = row1; i <= row2; i++) {
           for (int k = col1; k <= col2; k++) {
             frac = datos[i][k].split("/")[0];
@@ -500,8 +510,11 @@ public class Controlador {
           }
         }
 
+        //Variable que almacena un número.
         double num;
 
+        //Dos ciclos for que exploran minToMax, comparan sus valores y los
+        //ordenan.
         for (int i = 0; i < minToMax.length; i++){
           for (int k = i+1; k < minToMax.length; k++){
             num = minToMax[i];
@@ -512,10 +525,19 @@ public class Controlador {
           }
         }
 
+        //Variable que tendrá el resultado numérico de la mediana.
         double mediana;
+
+        //Variable que tendrá la mediana en forma de fracción.
         String median;
+
+        //Variable que tendrá el tamaño del arreglo de los elementos ordenados.
         int size = ordenados.length;
 
+        //If que indica que operación matemática debe usarse para obtener el
+        //resultado numérico de la mediana en caso de que el tamaño del arreglo
+        //sea par o impar, obtiene su equivalente de "valores" y establece la
+        //celda que se va a modificar con ese valor.
         if (ordenados.length % 2 == 0){
           mediana = (ordenados[(size/2)-1] + ordenados[size/2]) / 2;
 
