@@ -111,10 +111,25 @@ public class HojaDeCalculo
 
   }
 
+  /**
+   * Método que imprime los conjuntos formados en la matriz.
+   *
+   * @param nombres Recibe una variable de tipo {@code String} que indica el
+   *                nombre del conjunto.
+   * @param arregloConjuntos Recibe un arreglo de tipo {@code String[]} que
+   *                         contiene los datos que conforman el conjunto.
+   * @param datos Recibe una matriz de tipo {@code String[][]} que contiene los
+   *              datos almacenados en toda la matriz.
+   */
   public static void imprimirConjunto (String nombres,
                                        String[] arregloConjuntos,
                                        String[][] datos){
+
+    //Se imprime el nombre del conjunto y una flecha a su lado.
     System.out.printf("%s -> ", nombres);
+
+    //Ciclo for que obtiene las posiciones de los elementos de la matriz que son
+    //parte del conjunto e imprime los elementos en esas posiciones.
     for (int i = 1; i < arregloConjuntos.length; i++){
       char row = arregloConjuntos[i].charAt(1);
       int row1 = Character.getNumericValue(row);
